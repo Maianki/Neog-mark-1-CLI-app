@@ -1,4 +1,5 @@
 var readlineSync = require('readline-sync')
+const chalk = require('chalk');
 
 //Variables used in the program
 var score = 0
@@ -18,27 +19,31 @@ var highScore = [
 //array of objects to store questions
 var questions = [
   {
-    question: "Where do I live? ",
+    question: chalk.blue("Where do I live? "),
     answer: 'Tehri'
   },
   {
-    question:'What is my favourite sport? ',
+    question:chalk.blue('What is my favourite sport? '),
     answer: 'Football'
   },
   {
-    question:'Do I like coffee or tea ? ',
+    question:chalk.blue('Do I like coffee or tea ? '),
     answer: 'tea'
   },
   {
-    question:'Who among (Dravid, Virat , Dhoni and Sachin) is my favourite cricketer? ',
+    question:chalk.blue('Who among (Dravid, Virat , Dhoni and Sachin) is my favourite cricketer? '),
     answer: 'Dhoni'
+  },
+  {
+    question:chalk.blue('Who is my favourite bollywood actor?'),
+    answer: 'Shah Rukh Khan'
   }
 ]
 
 //function to welcome the user
 function welcome(){
   var name = readlineSync.question("What's your name? ")
-  console.log("Hello,",name,"Welcome to \"HOW WELL DO YOU KNOW ANKIT\" ")
+  console.log(chalk.red("Hello,",name,"Welcome to \"HOW WELL DO YOU KNOW ANKIT\" "))
   console.log("____________")
 }
 
@@ -51,10 +56,10 @@ function play(question,answer,questionNo){
   if(userAnswer.toLowerCase() === answer.toLowerCase()){
     console.log('You are right!');
     score+=1
-    console.log('Your current score is: ',score)
+    console.log(chalk.green('Your current score is: ',score))
   }else{
     console.log('You are wrong!')
-    console.log('Your current score is: ',score)
+    console.log(chalk.green('Your current score is: ',score))
   }
 }
 
@@ -70,7 +75,7 @@ function quiz(){
 //function to display your final score
 function displayScore(){    
   console.log("----------------------------")
-  console.log("Your final score is: ",score)
+  console.log(chalk.green("Your final score is: ",score))
   //calling showHighScore()
   showHighScore()
 
@@ -79,12 +84,12 @@ function displayScore(){
 
 //function to display high scores
 function showHighScore(){
-  console.log("High scorer's: ")
+  console.log(chalk.green("High scorer's: "))
   for(var i=0;i<highScore.length;i++){
     console.log(highScore[i].name,":",highScore[i].score)
   }
   if(score >= highScore[0].score || score >= highScore[0].score){
-      console.log("Yipee! You made it to the high score chart. Send screenshot of your score to me!")
+      console.log(chalk.red("Yipee! You made it to the high score chart. Send screenshot of your score to me!"))
     }
 }
 
